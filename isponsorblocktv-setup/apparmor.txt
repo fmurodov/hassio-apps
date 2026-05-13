@@ -27,50 +27,10 @@ profile isponsorblocktv_setup flags=(attach_disconnected,mediate_deleted) {
   # App data (wizard writes config.json here)
   /data/** rw,
 
-  # ttyd web terminal
-  /usr/bin/ttyd cx -> ttyd,
+  # ttyd pseudo-terminal
+  /dev/ptmx rw,
+  /dev/pts/** rw,
 
-  profile ttyd flags=(attach_disconnected,mediate_deleted) {
-    #include <abstractions/base>
-
-    signal (receive) peer=*_isponsorblocktv_setup,
-
-    /usr/bin/ttyd r,
-    /usr/bin/run_setup ix,
-    /tmp/** rwk,
-    /dev/tty rw,
-    /dev/ptmx rw,
-    /dev/pts/** rw,
-
-    # Serve web assets
-    network inet stream,
-    network inet6 stream,
-  }
-
-  # Python (iSponsorBlockTV setup-cli)
-  /usr/bin/python3* cx -> python3,
-
-  profile python3 flags=(attach_disconnected,mediate_deleted) {
-    #include <abstractions/base>
-    #include <abstractions/nameservice>
-
-    signal (receive) peer=*_isponsorblocktv_setup,
-
-    /usr/bin/python3* rix,
-    /usr/lib/python3*/ r,
-    /usr/lib/python3*/** mr,
-    /usr/local/lib/python3*/ r,
-    /usr/local/lib/python3*/** mr,
-
-    /data/** rw,
-    /tmp/** rwk,
-    /dev/tty rw,
-
-    # Network: YouTube, SponsorBlock, SSDP multicast, mDNS
-    network,
-
-    /etc/ssl/** r,
-    /etc/resolv.conf r,
-    /dev/urandom r,
-  }
+  # Network access for SSDP/mDNS discovery and YouTube APIs
+  network,
 }
