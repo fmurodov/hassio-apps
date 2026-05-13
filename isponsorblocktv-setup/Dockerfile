@@ -9,7 +9,9 @@ RUN \
 
 ENV \
     iSPBTV_docker="True" \
-    iSPBTV_data_dir="/data"
+    iSPBTV_data_dir="/data" \
+    TERM="xterm-256color" \
+    COLORTERM="truecolor"
 
 COPY rootfs /
 

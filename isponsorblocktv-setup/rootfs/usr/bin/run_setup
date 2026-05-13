@@ -15,7 +15,7 @@ while true; do
 
 EOF
 
-    python3 -m iSponsorBlockTV --data /data setup-cli
+    python3 -m iSponsorBlockTV --data /data setup
     python3 /usr/bin/show_devices
 
     echo ""
