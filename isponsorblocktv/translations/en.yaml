@@ -1,0 +1,34 @@
+configuration:
+  devices:
+    name: Devices
+    description: YouTube TV devices to connect to. Each entry needs the pairing code from your TV's YouTube settings.
+  skip_categories:
+    name: Skip Categories
+    description: SponsorBlock segment categories to automatically skip.
+  skip_count_tracking:
+    name: Skip Count Tracking
+    description: Report skipped segments back to SponsorBlock to help improve the database.
+  mute_ads:
+    name: Mute Ads
+    description: Automatically mute native YouTube ads.
+  skip_ads:
+    name: Skip Ads
+    description: Automatically click the Skip Ad button the moment it appears.
+  minimum_skip_length:
+    name: Minimum Skip Length
+    description: Minimum segment length in seconds before it is skipped.
+  auto_play:
+    name: Auto Play
+    description: Enable YouTube autoplay.
+  join_name:
+    name: Join Name
+    description: Display name shown in YouTube's cast-to list.
+  apikey:
+    name: YouTube API Key
+    description: YouTube Data API key. Only required when using the channel whitelist feature.
+  channel_whitelist:
+    name: Channel Whitelist
+    description: YouTube channels excluded from all skipping and ad muting.
+  use_proxy:
+    name: Use Proxy
+    description: Route all network requests through the system-wide proxy settings.

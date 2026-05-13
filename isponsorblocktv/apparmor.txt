@@ -1,0 +1,61 @@
+#include <tunables/global>
+
+profile isponsorblocktv flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  # Capabilities
+  file,
+  signal (send) set=(kill,term,int,hup,cont),
+
+  # S6-Overlay
+  /init ix,
+  /bin/** ix,
+  /usr/bin/** ix,
+  /run/{s6,s6-rc*,service}/** ix,
+  /package/** ix,
+  /command/** ix,
+  /etc/services.d/** rwix,
+  /etc/cont-init.d/** rwix,
+  /etc/cont-finish.d/** rwix,
+  /run/{,**} rwk,
+  /dev/tty rw,
+
+  # Bashio
+  /usr/lib/bashio/** ix,
+  /tmp/** rwk,
+
+  # Access to options.json and other files within your app
+  /data/** rw,
+
+  # Start new profile for iSponsorBlockTV (Python)
+  /usr/bin/python3* cx -> python3,
+
+  profile python3 flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
+    #include <abstractions/nameservice>
+
+    # Receive signals from S6-Overlay
+    signal (receive) peer=*_isponsorblocktv,
+
+    # Python runtime
+    /usr/bin/python3* rix,
+    /usr/lib/python3*/ r,
+    /usr/lib/python3*/** mr,
+    /usr/local/lib/python3*/ r,
+    /usr/local/lib/python3*/** mr,
+
+    # App data
+    /data/** rw,
+    /tmp/** rwk,
+
+    # Network access (YouTube, SponsorBlock APIs)
+    network inet stream,
+    network inet6 stream,
+    network inet dgram,
+    network inet6 dgram,
+
+    /etc/ssl/** r,
+    /etc/resolv.conf r,
+    /dev/urandom r,
+  }
+}

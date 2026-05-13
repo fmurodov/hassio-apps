@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+"""Map Home Assistant options.json to iSponsorBlockTV config.json."""
+import json
+import sys
+
+OPTIONS_FILE = "/data/options.json"
+CONFIG_FILE = "/data/config.json"
+
+try:
+    with open(OPTIONS_FILE) as f:
+        options = json.load(f)
+except FileNotFoundError:
+    print(f"ERROR: {OPTIONS_FILE} not found", file=sys.stderr)
+    sys.exit(1)
+
+config = {
+    "devices": options.get("devices", []),
+    "skip_categories": options.get("skip_categories", ["sponsor"]),
+    "skip_count_tracking": options.get("skip_count_tracking", True),
+    "mute_ads": options.get("mute_ads", True),
+    "skip_ads": options.get("skip_ads", True),
+    "minimum_skip_length": options.get("minimum_skip_length", 1),
+    "auto_play": options.get("auto_play", True),
+    "join_name": options.get("join_name", "iSponsorBlockTV"),
+    "apikey": options.get("apikey", ""),
+    "channel_whitelist": options.get("channel_whitelist", []),
+    "use_proxy": options.get("use_proxy", False),
+}
+
+with open(CONFIG_FILE, "w") as f:
+    json.dump(config, f, indent=2)

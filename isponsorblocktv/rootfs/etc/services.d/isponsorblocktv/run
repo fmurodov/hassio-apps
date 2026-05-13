@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start the iSponsorBlockTV service
+# s6-overlay docs: https://github.com/just-containers/s6-overlay
+# ==============================================================================
+
+bashio::log.info "Generating iSponsorBlockTV configuration..."
+python3 /usr/bin/generate_config || bashio::exit.nok "Failed to generate configuration"
+
+bashio::log.info "Starting iSponsorBlockTV..."
+exec python3 -m iSponsorBlockTV --data /data

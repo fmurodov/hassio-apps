@@ -1,0 +1,45 @@
+# https://developers.home-assistant.io/docs/apps/configuration#app-configuration
+name: iSponsorBlockTV
+version: "2.9.0"
+slug: isponsorblocktv
+description: Skip SponsorBlock segments and ads on YouTube TV
+url: "https://github.com/fmurodov/hassio-apps/tree/main/isponsorblocktv"
+arch:
+  - aarch64
+  - amd64
+init: false
+options:
+  devices:
+    - screen_id: ""
+      name: "YouTube on TV"
+      offset: 0
+  skip_categories:
+    - sponsor
+  skip_count_tracking: true
+  mute_ads: true
+  skip_ads: true
+  minimum_skip_length: 1
+  auto_play: true
+  join_name: "iSponsorBlockTV"
+  apikey: ""
+  channel_whitelist: []
+  use_proxy: false
+schema:
+  devices:
+    - screen_id: str
+      name: str?
+      offset: int?
+  skip_categories:
+    - list(sponsor|selfpromo|exclusive_access|interaction|poi_highlight|intro|outro|preview|filler|music_offtopic)
+  skip_count_tracking: bool
+  mute_ads: bool
+  skip_ads: bool
+  minimum_skip_length: int(0,)
+  auto_play: bool
+  join_name: str
+  apikey: password?
+  channel_whitelist:
+    - id: str
+      name: str?
+  use_proxy: bool
+image: "ghcr.io/fmurodov/hassio-apps/isponsorblocktv"

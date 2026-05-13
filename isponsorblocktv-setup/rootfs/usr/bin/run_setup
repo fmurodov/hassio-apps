@@ -1,0 +1,24 @@
+#!/bin/bash
+# Loop so the user can re-run the wizard without restarting the add-on.
+while true; do
+    clear
+    cat <<'EOF'
+
+  ╔══════════════════════════════════════════════════╗
+  ║           iSponsorBlockTV Setup Wizard           ║
+  ╚══════════════════════════════════════════════════╝
+
+  This wizard discovers YouTube TV devices on your
+  network and retrieves their Screen IDs.
+
+  Follow the prompts below to add your devices.
+
+EOF
+
+    python3 -m iSponsorBlockTV setup-cli
+    python3 /usr/bin/show_devices
+
+    echo ""
+    echo "  Press Enter to run the wizard again, or Ctrl+C to exit."
+    read -r
+done

@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+"""Read the wizard-generated config and display Screen IDs for the user to copy."""
+import json
+import sys
+
+CONFIG_FILE = "/data/config.json"
+WIDTH = 54
+SEP = "═" * WIDTH
+
+
+def line(text=""):
+    print(f"  {text}")
+
+
+try:
+    with open(CONFIG_FILE) as f:
+        config = json.load(f)
+except FileNotFoundError:
+    line()
+    line("No configuration found. Did the wizard complete?")
+    sys.exit(0)
+
+devices = [d for d in config.get("devices", []) if d.get("screen_id")]
+if not devices:
+    line()
+    line("No devices were configured.")
+    sys.exit(0)
+
+print()
+line(SEP)
+line("  Copy these values into your iSponsorBlockTV")
+line("  add-on configuration:")
+line(SEP)
+for d in devices:
+    print()
+    line(f"  Name:      {d.get('name', 'Unknown')}")
+    line(f"  Screen ID: {d.get('screen_id', 'N/A')}")
+print()
+line(SEP)

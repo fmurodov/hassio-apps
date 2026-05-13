@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start the iSponsorBlockTV setup UI
+# s6-overlay docs: https://github.com/just-containers/s6-overlay
+# ==============================================================================
+
+bashio::log.info "Starting iSponsorBlockTV Setup on port 7681..."
+exec ttyd \
+    --port 7681 \
+    --writable \
+    /usr/bin/run_setup

@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.!*
+
+# Editors
+.vscode/settings.json
+*.swp
+*.swo
