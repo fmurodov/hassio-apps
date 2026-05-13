@@ -7,7 +7,9 @@ RUN \
     apk add --no-cache ttyd \
     && pip3 install --no-cache-dir iSponsorBlockTV==${BUILD_VERSION}
 
-ENV iSPBTV_docker="True"
+ENV \
+    iSPBTV_docker="True" \
+    iSPBTV_data_dir="/data"
 
 COPY rootfs /
 
