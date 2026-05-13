@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/apps/configuration#app-dockerfile
 ARG BUILD_ARCH=aarch64
-FROM ghcr.io/home-assistant/${BUILD_ARCH}-base-python:3.13-alpine3.21
+FROM ghcr.io/home-assistant/${BUILD_ARCH}-base-python:3.14-alpine3.21
 
 ARG BUILD_VERSION
 RUN pip3 install --no-cache-dir \
