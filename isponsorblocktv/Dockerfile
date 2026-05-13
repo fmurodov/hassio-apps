@@ -1,10 +1,10 @@
 # https://developers.home-assistant.io/docs/apps/configuration#app-dockerfile
-ARG BUILD_FROM=ghcr.io/home-assistant/aarch64-base-python:3.13-alpine3.21
-FROM ${BUILD_FROM}
+ARG BUILD_ARCH=aarch64
+FROM ghcr.io/home-assistant/${BUILD_ARCH}-base-python:3.13-alpine3.21
 
-ARG ISPONSORBLOCKTV_VERSION
+ARG BUILD_VERSION
 RUN pip3 install --no-cache-dir \
-    iSponsorBlockTV==${ISPONSORBLOCKTV_VERSION}
+    iSponsorBlockTV==${BUILD_VERSION}
 
 ENV iSPBTV_docker="True"
 
