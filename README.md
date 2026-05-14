@@ -1,4 +1,4 @@
-# Firdavs Murodov's Home Assistant Apps
+# fmurodov Home Assistant Apps
 
 [![Open your Home Assistant instance and add this repository.](https://my.home-assistant.io/badges/supervisor_store.svg)](https://my.home-assistant.io/redirect/supervisor_store/?repository_url=https%3A%2F%2Fgithub.com%2Ffmurodov%2Fhassio-apps)
 

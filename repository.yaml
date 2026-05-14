@@ -1,4 +1,4 @@
 # https://developers.home-assistant.io/docs/apps/repository#repository-configuration
-name: Firdavs Murodov's Home Assistant apps
+name: fmurodov Home Assistant Apps
 url: 'https://github.com/fmurodov/hassio-apps'
 maintainer: Firdavs Murodov <firdavs.murodov@gmail.com>
