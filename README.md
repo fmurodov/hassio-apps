@@ -20,5 +20,13 @@ Connects to your YouTube TV app and automatically skips SponsorBlock segments
 One-time setup wizard that discovers your YouTube TV devices on the network and
 displays their Screen IDs. Run this first, then configure the iSponsorBlockTV app.
 
+### [Globalping Probe](./globalping-probe)
+
+![Supports aarch64 Architecture][aarch64-shield]
+![Supports amd64 Architecture][amd64-shield]
+
+Runs a Globalping network probe, contributing to a global network for ping,
+traceroute, mtr, DNS and HTTP measurements.
+
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg

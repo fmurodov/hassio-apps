@@ -11,6 +11,20 @@
       "matchStrings": ["version: \"(?<currentValue>[^\"]+)\""],
       "depNameTemplate": "iSponsorBlockTV",
       "datasourceTemplate": "pypi"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^globalping-probe/config\\.yaml$/"],
+      "matchStrings": ["version: \"(?<currentValue>[^\"]+)\""],
+      "depNameTemplate": "globalping/globalping-probe",
+      "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)Dockerfile$/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\nARG \\S+=(?<currentValue>\\S+)"
+      ]
     }
   ]
 }
