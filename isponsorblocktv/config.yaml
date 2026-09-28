@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/apps/configuration#app-configuration
 name: iSponsorBlockTV
-version: "2.10.0"
+version: "2.11.0"
 slug: isponsorblocktv
 description: Skip SponsorBlock segments and ads on YouTube TV
 url: "https://github.com/fmurodov/hassio-apps/tree/main/isponsorblocktv"
