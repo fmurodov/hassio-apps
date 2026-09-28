@@ -1,0 +1,37 @@
+#!/usr/bin/env bashio
+# ==============================================================================
+# Start the Globalping probe with options from Home Assistant
+# ==============================================================================
+
+declare UUID_FILE="/data/probe_uuid"
+
+if bashio::config.has_value 'adoption_token'; then
+  export GP_ADOPTION_TOKEN="$(bashio::config 'adoption_token')"
+else
+  bashio::log.warning "No adoption token set. Adopt the probe manually at https://dash.globalping.io"
+fi
+
+# Map Home Assistant log levels to the probe's (winston npm) levels
+case "$(bashio::config 'log_level' 'info')" in
+  trace) export GP_LOG_LEVEL="silly" ;;
+  debug) export GP_LOG_LEVEL="debug" ;;
+  info | notice) export GP_LOG_LEVEL="info" ;;
+  warning) export GP_LOG_LEVEL="warn" ;;
+  error | fatal) export GP_LOG_LEVEL="error" ;;
+esac
+
+# The probe keeps its UUID in the container filesystem, which Home Assistant
+# recreates on every start. Persist it in /data so the probe keeps its identity.
+if ! bashio::fs.file_exists "${UUID_FILE}" || [[ ! -s "${UUID_FILE}" ]]; then
+  bashio::log.info "Generating a persistent probe UUID..."
+  cat /proc/sys/kernel/random/uuid > "${UUID_FILE}"
+fi
+export GP_PROBE_UUID="$(cat "${UUID_FILE}")"
+
+# The probe exits to apply self-updates and expects to be restarted
+while true; do
+  bashio::log.info "Starting Globalping probe..."
+  bash /entrypoint.sh
+  bashio::log.warning "Probe exited with code $?, restarting in 5 seconds..."
+  sleep 5
+done

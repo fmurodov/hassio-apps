@@ -1,0 +1,9 @@
+configuration:
+  adoption_token:
+    name: Adoption Token
+    description: >-
+      Your Globalping adoption token from dash.globalping.io. Automatically adds
+      the probe to your account so you earn credits and higher rate limits.
+  log_level:
+    name: Log Level
+    description: Controls how verbose the probe logs are.
