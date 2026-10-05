@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/apps/configuration#app-configuration
 name: Globalping Probe
-version: "0.52.1"
+version: "0.53.0"
 slug: globalping-probe
 description: Run a Globalping network probe and contribute to the global measurement network
 url: "https://github.com/fmurodov/hassio-apps/tree/main/globalping-probe"
