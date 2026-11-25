@@ -5,7 +5,7 @@ ARG BUILD_VERSION
 FROM globalping/globalping-probe:${BUILD_VERSION}
 
 # renovate: datasource=github-releases depName=hassio-addons/bashio
-ARG BASHIO_VERSION=v0.19.0
+ARG BASHIO_VERSION=v0.20.0
 RUN mkdir -p /usr/lib/bashio \
     && curl -fsSL "https://github.com/hassio-addons/bashio/archive/${BASHIO_VERSION}.tar.gz" \
         | tar -xzf - --strip-components=2 -C /usr/lib/bashio "bashio-${BASHIO_VERSION#v}/lib" \
